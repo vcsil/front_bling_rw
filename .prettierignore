@@ -1,3 +1,5 @@
 node_modules/
 .eslintrc.cjs
 dist/
+tailwind.config.js
+src/components/ui/
