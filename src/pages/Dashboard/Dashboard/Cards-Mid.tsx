@@ -27,7 +27,7 @@ function CardComponent({ card, isLast, isSmallScreen }: MidCardProps): JSX.Eleme
                         </>
                     )}
                 </div>
-                <h3 className="text-xl font-bold">{formatMoeda(card.value)}</h3>
+                <h3 className="text-xl font-bold">{card.name === "Percentual" ? formatPercent(card.value) : formatMoeda(card.value)}</h3>
                 <h3 className="text-lg">{card.name}</h3>
             </div>
             {!isLast && <Separator orientation={!isSmallScreen ? "vertical" : "horizontal"} />}
@@ -54,7 +54,9 @@ function CardComponentCarousel({ card }: CardComponentCarouselProps): JSX.Elemen
                             </>
                         )}
                     </div>
-                    <h3 className="text-xl font-bold">{formatMoeda(card.value)}</h3>
+                    <h3 className="text-xl font-bold">
+                        {card.name === "Percentual" ? formatPercent(card.value) : formatMoeda(card.value)}
+                    </h3>
                     <h3 className="text-lg">{card.name}</h3>
                 </div>
             </Card>
