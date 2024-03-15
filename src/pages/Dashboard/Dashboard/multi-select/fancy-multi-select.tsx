@@ -14,17 +14,17 @@ export function FancyMultiSelect() {
     const inputRef = useRef<HTMLInputElement>(null);
     const [open, setOpen] = useState(false);
 
-    const { situationsList: FRAMEWORKS, situationsLoading } = useGetSituationsSales();
+    const { situationsList: SITUATIONS, situationsLoading } = useGetSituationsSales();
 
     const [selected, setSelected] = useState<SituationsT[]>([]);
     const [inputValue, setInputValue] = useState("");
 
     useEffect(() => {
-        if (!situationsLoading) setSelected([FRAMEWORKS[1]]);
+        if (!situationsLoading) setSelected([SITUATIONS[1]]);
     }, [situationsLoading]);
 
-    const handleUnselect = useCallback((framework: SituationsT) => {
-        setSelected((prev) => prev.filter((s) => s.id !== framework.id));
+    const handleUnselect = useCallback((situation: SituationsT) => {
+        setSelected((prev) => prev.filter((s) => s.id !== situation.id));
     }, []);
 
     const handleKeyDown = useCallback((e: KeyboardEvent<HTMLDivElement>) => {
@@ -50,28 +50,28 @@ export function FancyMultiSelect() {
         return <Skeleton className="w-2/3 h-[10px] m-2" />;
     }
 
-    const selectables = FRAMEWORKS.filter((framework) => !selected.includes(framework));
+    const selectables = SITUATIONS.filter((situation) => !selected.includes(situation));
 
     return (
         <Command onKeyDown={handleKeyDown} className="h-fit overflow-visible bg-transparent">
             <div className="group border-input px-3 py-2 text-sm ring-offset-background rounded-md focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
                 <div className="flex gap-1 flex-wrap">
-                    {selected.map((framework) => {
+                    {selected.map((situation) => {
                         return (
-                            <Badge key={framework.id} variant="secondary">
-                                {framework.nome}
+                            <Badge key={situation.id} variant="secondary">
+                                {situation.nome}
                                 <button
                                     className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                                     onKeyDown={(e) => {
                                         if (e.key === "Enter") {
-                                            handleUnselect(framework);
+                                            handleUnselect(situation);
                                         }
                                     }}
                                     onMouseDown={(e) => {
                                         e.preventDefault();
                                         e.stopPropagation();
                                     }}
-                                    onClick={() => handleUnselect(framework)}
+                                    onClick={() => handleUnselect(situation)}
                                 >
                                     <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
                                 </button>
@@ -85,7 +85,7 @@ export function FancyMultiSelect() {
                         onValueChange={setInputValue}
                         onBlur={() => setOpen(false)}
                         onFocus={() => setOpen(true)}
-                        placeholder="Select frameworks..."
+                        placeholder="Selecione a situação dos pedidos..."
                         className="ml-2 bg-transparent outline-none placeholder:text-muted-foreground flex-1"
                     />
                 </div>
@@ -94,21 +94,21 @@ export function FancyMultiSelect() {
                 {open && selectables.length > 0 ? (
                     <div className="absolute w-full z-10 top-0 rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
                         <CommandGroup className="h-full overflow-auto">
-                            {selectables.map((framework) => {
+                            {selectables.map((situation) => {
                                 return (
                                     <CommandItem
-                                        key={framework.id}
+                                        key={situation.id}
                                         onMouseDown={(e) => {
                                             e.preventDefault();
                                             e.stopPropagation();
                                         }}
                                         onSelect={(_id) => {
                                             setInputValue("");
-                                            setSelected((prev) => [...prev, framework]);
+                                            setSelected((prev) => [...prev, situation]);
                                         }}
                                         className={"cursor-pointer"}
                                     >
-                                        {framework.nome}
+                                        {situation.nome}
                                     </CommandItem>
                                 );
                             })}
