@@ -1,21 +1,30 @@
 "use client";
-import { useRef, useState, useCallback, KeyboardEvent } from "react";
+import { useRef, useState, useCallback, KeyboardEvent, useEffect } from "react";
+import { Command as CommandPrimitive } from "cmdk";
 import { X } from "lucide-react";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
+
 import { Command, CommandGroup, CommandItem } from "@/components/ui/command";
-import { Command as CommandPrimitive } from "cmdk";
-import FRAMEWORKS from "@/pages/Dashboard/Dashboard/multi-select/data";
-import Framework from "@/pages/Dashboard/Dashboard/multi-select/type";
+import SituationsT from "@/pages/Dashboard/Dashboard/multi-select/type";
+import useGetSituationsSales from "@/hooks/api/useGetSituations";
 
 export function FancyMultiSelect() {
     const inputRef = useRef<HTMLInputElement>(null);
     const [open, setOpen] = useState(false);
-    const [selected, setSelected] = useState<Framework[]>([FRAMEWORKS[1]]);
+
+    const { situationsList: FRAMEWORKS, situationsLoading } = useGetSituationsSales();
+
+    const [selected, setSelected] = useState<SituationsT[]>([]);
     const [inputValue, setInputValue] = useState("");
 
-    const handleUnselect = useCallback((framework: Framework) => {
-        setSelected((prev) => prev.filter((s) => s.value !== framework.value));
+    useEffect(() => {
+        if (!situationsLoading) setSelected([FRAMEWORKS[1]]);
+    }, [situationsLoading]);
+
+    const handleUnselect = useCallback((framework: SituationsT) => {
+        setSelected((prev) => prev.filter((s) => s.id !== framework.id));
     }, []);
 
     const handleKeyDown = useCallback((e: KeyboardEvent<HTMLDivElement>) => {
@@ -37,6 +46,10 @@ export function FancyMultiSelect() {
         }
     }, []);
 
+    if (situationsLoading) {
+        return <Skeleton className="w-2/3 h-[10px] m-2" />;
+    }
+
     const selectables = FRAMEWORKS.filter((framework) => !selected.includes(framework));
 
     return (
@@ -45,8 +58,8 @@ export function FancyMultiSelect() {
                 <div className="flex gap-1 flex-wrap">
                     {selected.map((framework) => {
                         return (
-                            <Badge key={framework.value} variant="secondary">
-                                {framework.label}
+                            <Badge key={framework.id} variant="secondary">
+                                {framework.nome}
                                 <button
                                     className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                                     onKeyDown={(e) => {
@@ -84,18 +97,18 @@ export function FancyMultiSelect() {
                             {selectables.map((framework) => {
                                 return (
                                     <CommandItem
-                                        key={framework.value}
+                                        key={framework.id}
                                         onMouseDown={(e) => {
                                             e.preventDefault();
                                             e.stopPropagation();
                                         }}
-                                        onSelect={(value) => {
+                                        onSelect={(_id) => {
                                             setInputValue("");
                                             setSelected((prev) => [...prev, framework]);
                                         }}
                                         className={"cursor-pointer"}
                                     >
-                                        {framework.label}
+                                        {framework.nome}
                                     </CommandItem>
                                 );
                             })}

@@ -1,3 +1,6 @@
-type Framework = Record<"value" | "label", string>;
+interface SituationsT {
+    id: string;
+    nome: string;
+}
 
-export default Framework;
+export default SituationsT;
