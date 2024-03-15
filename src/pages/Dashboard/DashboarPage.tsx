@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import { DateRangePicker } from "@/pages/Dashboard/Dashboard/date-range-picker/date-range-picker";
 import Dashboard from "@/pages/Dashboard/Dashboard/Dashboard";
 
 export default function DashboardPage() {
