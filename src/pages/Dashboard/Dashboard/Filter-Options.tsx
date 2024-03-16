@@ -8,6 +8,14 @@ import { DateRangePicker } from "@/pages/Dashboard/Dashboard/date-range-picker/d
 import { FilterOptionsProps } from "@/pages/Dashboard/Dashboard//types";
 
 export default function FilterOptions({ rangeDate, setRangeDate }: FilterOptionsProps): JSX.Element {
+    const initialDateFromCompare = new Date(rangeDate.from.valueOf());
+    initialDateFromCompare.setMonth(initialDateFromCompare.getMonth() - 1);
+    initialDateFromCompare.setDate(1);
+    initialDateFromCompare.setHours(0, 0, 0, 0);
+    const initialDateToCompare = new Date(rangeDate.to.valueOf());
+    initialDateToCompare.setDate(0);
+    initialDateToCompare.setHours(23, 59, 59, 999);
+
     return (
         <div className="grid gap-4 grid-cols-2 min-[1360px]:grid-cols-10">
             <Card className="col-span-2 min-[1360px]:col-span-4">
@@ -49,8 +57,8 @@ export default function FilterOptions({ rangeDate, setRangeDate }: FilterOptions
                         <div className="flex h-full w-full">
                             <DateRangePicker
                                 onUpdate={(values) => console.log(values)}
-                                initialDateFrom="2024-01-02"
-                                initialDateTo="2024-02-02"
+                                initialDateFrom={initialDateFromCompare}
+                                initialDateTo={initialDateToCompare}
                                 align="start"
                                 locale="pt-BR"
                                 showCompare={false}
