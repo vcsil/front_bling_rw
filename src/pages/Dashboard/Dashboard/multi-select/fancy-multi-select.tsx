@@ -20,7 +20,7 @@ export function FancyMultiSelect() {
     const [inputValue, setInputValue] = useState("");
 
     useEffect(() => {
-        if (!situationsLoading) setSelected([SITUATIONS[1]]);
+        if (!situationsLoading) setSelected([SITUATIONS[0]]);
     }, [situationsLoading]);
 
     const handleUnselect = useCallback((situation: SituationsT) => {
