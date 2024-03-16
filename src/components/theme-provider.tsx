@@ -29,21 +29,23 @@ const initialState: ThemeProviderState = {
 export const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
 function ColorsDefaultByTheme(themeName: string): ThemeColors {
-    if (themeName === "light") {
-        return {
-            primary: "#18181b",
-            secondary: "#f4f4f5",
-            border: "#27272a", //"#e4e4e7",
-        };
-    } else if (themeName === "dark") {
-        return {
-            primary: "#f4f4f5",
-            secondary: "#18181b",
-            border: "#e4e4e7",
-        };
-    } else {
-        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        return ColorsDefaultByTheme(systemTheme);
+    switch (themeName) {
+        case "light":
+            return {
+                primary: "#18181b",
+                secondary: "#f4f4f5",
+                border: "#27272a", //"#e4e4e7",
+            };
+        case "dark":
+            return {
+                primary: "#f4f4f5",
+                secondary: "#18181b",
+                border: "#e4e4e7",
+            };
+        default:
+            // eslint-disable-next-line no-case-declarations
+            const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            return ColorsDefaultByTheme(systemTheme);
     }
 }
 
