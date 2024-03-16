@@ -1,5 +1,4 @@
 import { DateRange } from "@/pages/Dashboard/Dashboard/date-range-picker/types/types-picker";
-import { Dispatch, SetStateAction } from "react";
 
 export interface CardsProps {
     amount: number;
@@ -9,7 +8,7 @@ export interface CardsProps {
 
 export interface FilterOptionsProps {
     rangeDate: DateRange;
-    setRangeDate: Dispatch<SetStateAction<DateRange>>;
+    setRangeDate: (_dateRange: DateRange) => void;
 }
 
 export interface MarkupProps {

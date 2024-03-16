@@ -28,10 +28,8 @@ export function DateRangePicker({
     const [isOpen, setIsOpen] = useState(false);
 
     const [range, setRange] = useState<DateRange>({
-        from: new Date(new Date(initialDateFrom).setHours(0, 0, 0, 0)),
-        to: initialDateTo
-            ? new Date(new Date(initialDateTo).setHours(0, 0, 0, 0))
-            : new Date(new Date(initialDateFrom).setHours(0, 0, 0, 0)),
+        from: initialDateFrom,
+        to: initialDateTo ? initialDateTo : initialDateFrom,
     });
 
     const [rangeCompare, setRangeCompare] = useState<DateRange | undefined>(

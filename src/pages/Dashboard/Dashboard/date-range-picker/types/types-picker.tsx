@@ -2,16 +2,16 @@ import { Dispatch, SetStateAction } from "react";
 
 export interface DateRange {
     from: Date;
-    to: Date | undefined;
+    to: Date;
 }
 
 export interface DateRangePickerProps {
     /** Click handler for applying the updates from DateRangePicker. */
     onUpdate?: (_values: { range: DateRange; rangeCompare?: DateRange }) => void;
     /** Initial value for start date */
-    initialDateFrom?: Date | string;
+    initialDateFrom?: Date;
     /** Initial value for end date */
-    initialDateTo?: Date | string;
+    initialDateTo?: Date;
     /** Initial value for start date for compare */
     initialCompareFrom?: Date | string;
     /** Initial value for end date for compare */
