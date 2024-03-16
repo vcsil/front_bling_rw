@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 
 import { DateInputProps, DateParts } from "@/pages/Dashboard/Dashboard/date-range-picker/types/types-input";
 import { formatNumber } from "@/pages/Dashboard/Dashboard/date-range-picker/utils/utils-input";
-import styled from "styled-components";
 
 export default function DateInput({ id, value, onChange }: { id: string } & DateInputProps) {
     const [date, setDate] = useState<DateParts>(() => {
