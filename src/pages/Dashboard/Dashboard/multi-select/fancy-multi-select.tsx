@@ -9,8 +9,9 @@ import { Badge } from "@/components/ui/badge";
 import { Command, CommandGroup, CommandItem } from "@/components/ui/command";
 import SituationsT from "@/pages/Dashboard/Dashboard/multi-select/type";
 import useGetSituationsSales from "@/hooks/api/useGetSituations";
+import { FancyMultiSelectProps } from "@/pages/Dashboard/Dashboard/types";
 
-export function FancyMultiSelect() {
+export function FancyMultiSelect({ situationsSales }: FancyMultiSelectProps) {
     const inputRef = useRef<HTMLInputElement>(null);
     const [open, setOpen] = useState(false);
 
@@ -20,7 +21,9 @@ export function FancyMultiSelect() {
     const [inputValue, setInputValue] = useState("");
 
     useEffect(() => {
-        if (!situationsLoading) setSelected([SITUATIONS[0]]);
+        if (!situationsLoading) {
+            setSelected(SITUATIONS.filter((obj) => situationsSales.includes(obj.id)));
+        }
     }, [situationsLoading]);
 
     const handleUnselect = useCallback((situation: SituationsT) => {

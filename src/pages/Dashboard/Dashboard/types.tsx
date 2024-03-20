@@ -10,6 +10,7 @@ export interface FilterOptionsProps {
     rangeDateMain: DateRange;
     rangeDateCompare: DateRange;
     setRangeDateMain: (_dateRange: DateRange, _rangeType: "main" | "compare") => void;
+    situationsSales: string[];
 }
 
 export interface MarkupProps {
@@ -52,4 +53,8 @@ export interface CardsMidProps {
 
 export interface CardComponentCarouselProps {
     card: MidCardsData;
+}
+
+export interface FancyMultiSelectProps {
+    situationsSales: string[];
 }

@@ -21,6 +21,7 @@ export default function Dashboard() {
         from: new Date(dashboardData.dateRangeCompare.from),
         to: new Date(dashboardData.dateRangeCompare.to),
     });
+    const [situationsSales, setSituationsSales] = useState<string[]>(dashboardData.situationsSales);
 
     function updateRangeDate(newRangeDate: DateRange, rangeType: "main" | "compare"): void {
         const [setRangeDateFunction, dateRangeKey] =
@@ -39,7 +40,12 @@ export default function Dashboard() {
         <>
             <Tabs defaultValue="overview" className="space-y-4">
                 <TabsContent value="overview" className="space-y-4">
-                    <FilterOptions rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} setRangeDateMain={updateRangeDate} />
+                    <FilterOptions
+                        rangeDateMain={rangeDateMain}
+                        rangeDateCompare={rangeDateCompare}
+                        setRangeDateMain={updateRangeDate}
+                        situationsSales={situationsSales}
+                    />
                     <ResumeCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} />
                     <div className="grid gap-4 grid-cols-6 min-[1360px]:grid-cols-5">
                         <Markup rangeDateMain={rangeDateMain} />

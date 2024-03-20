@@ -7,12 +7,17 @@ import { FancyMultiSelect } from "@/pages/Dashboard/Dashboard/multi-select/fancy
 import { DateRangePicker } from "@/pages/Dashboard/Dashboard/date-range-picker/date-range-picker";
 import { FilterOptionsProps } from "@/pages/Dashboard/Dashboard//types";
 
-export default function FilterOptions({ rangeDateMain, rangeDateCompare, setRangeDateMain }: FilterOptionsProps): JSX.Element {
+export default function FilterOptions({
+    rangeDateMain,
+    rangeDateCompare,
+    setRangeDateMain,
+    situationsSales,
+}: FilterOptionsProps): JSX.Element {
     return (
         <div className="grid gap-4 grid-cols-2 min-[1360px]:grid-cols-10">
             <Card className="col-span-2 min-[1360px]:col-span-4">
                 <CardContent className="p-0 items-center">
-                    <FancyMultiSelect />
+                    <FancyMultiSelect situationsSales={situationsSales} />
                 </CardContent>
             </Card>
             <Card className="col-span-2 lg:col-span-1 min-[1360px]:col-span-3">
