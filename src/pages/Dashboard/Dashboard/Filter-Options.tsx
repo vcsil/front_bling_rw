@@ -12,12 +12,13 @@ export default function FilterOptions({
     rangeDateCompare,
     setRangeDateMain,
     situationsSales,
+    setSituationsSales,
 }: FilterOptionsProps): JSX.Element {
     return (
         <div className="grid gap-4 grid-cols-2 min-[1360px]:grid-cols-10">
             <Card className="col-span-2 min-[1360px]:col-span-4">
                 <CardContent className="p-0 items-center">
-                    <FancyMultiSelect situationsSales={situationsSales} />
+                    <FancyMultiSelect situationsSales={situationsSales} setSituationsSales={setSituationsSales} />
                 </CardContent>
             </Card>
             <Card className="col-span-2 lg:col-span-1 min-[1360px]:col-span-3">

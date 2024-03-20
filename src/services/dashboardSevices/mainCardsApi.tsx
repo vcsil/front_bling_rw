@@ -1,4 +1,4 @@
-import { DateRangeMainCompare } from "@/pages/Dashboard/Dashboard/date-range-picker/types/types-picker";
+import { GetMainCardsProps } from "@/pages/Dashboard/Dashboard/date-range-picker/types/types-picker";
 import api from "@/services/api";
 
 interface MainCardsReturnT {
@@ -14,12 +14,13 @@ interface AllCardsReturnT {
     averageTicket: MainCardsReturnT;
 }
 
-export async function getMainCards(dateRanges: DateRangeMainCompare): Promise<AllCardsReturnT> {
+export async function getMainCards(cardsProps: GetMainCardsProps): Promise<AllCardsReturnT> {
     const queryParams = {
-        mainDateFrom: dateRanges.main.from.toJSON().split("T")[0],
-        mainDateTo: dateRanges.main.to.toJSON().split("T")[0],
-        compareDateFrom: dateRanges.compare.from.toJSON().split("T")[0],
-        compareDateTo: dateRanges.compare.to.toJSON().split("T")[0],
+        mainDateFrom: cardsProps.main.from.toJSON().split("T")[0],
+        mainDateTo: cardsProps.main.to.toJSON().split("T")[0],
+        compareDateFrom: cardsProps.compare.from.toJSON().split("T")[0],
+        compareDateTo: cardsProps.compare.to.toJSON().split("T")[0],
+        situationsSales: cardsProps.situationsSales,
     };
 
     const response = await api.get("/dashboard/main-cards", { params: queryParams });

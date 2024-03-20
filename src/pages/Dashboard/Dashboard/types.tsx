@@ -11,6 +11,7 @@ export interface FilterOptionsProps {
     rangeDateCompare: DateRange;
     setRangeDateMain: (_dateRange: DateRange, _rangeType: "main" | "compare") => void;
     situationsSales: string[];
+    setSituationsSales: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 export interface MarkupProps {
@@ -57,4 +58,5 @@ export interface CardComponentCarouselProps {
 
 export interface FancyMultiSelectProps {
     situationsSales: string[];
+    setSituationsSales: React.Dispatch<React.SetStateAction<string[]>>;
 }

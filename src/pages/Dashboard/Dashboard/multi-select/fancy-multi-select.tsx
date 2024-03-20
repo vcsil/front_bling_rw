@@ -11,7 +11,7 @@ import SituationsT from "@/pages/Dashboard/Dashboard/multi-select/type";
 import useGetSituationsSales from "@/hooks/api/useGetSituations";
 import { FancyMultiSelectProps } from "@/pages/Dashboard/Dashboard/types";
 
-export function FancyMultiSelect({ situationsSales }: FancyMultiSelectProps) {
+export function FancyMultiSelect({ situationsSales, setSituationsSales }: FancyMultiSelectProps) {
     const inputRef = useRef<HTMLInputElement>(null);
     const [open, setOpen] = useState(false);
 
@@ -25,6 +25,12 @@ export function FancyMultiSelect({ situationsSales }: FancyMultiSelectProps) {
             setSelected(SITUATIONS.filter((obj) => situationsSales.includes(obj.id)));
         }
     }, [situationsLoading]);
+
+    useEffect(() => {
+        if (!situationsLoading) {
+            setSituationsSales(selected.map((obj) => obj.id));
+        }
+    }, [selected]);
 
     const handleUnselect = useCallback((situation: SituationsT) => {
         setSelected((prev) => prev.filter((s) => s.id !== situation.id));

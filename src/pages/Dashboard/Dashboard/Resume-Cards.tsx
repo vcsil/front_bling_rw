@@ -9,7 +9,15 @@ import { CardsProps } from "@/pages/Dashboard/Dashboard/types";
 import useGetMainCards from "@/hooks/api/useGetMainCards";
 import { useEffect, useState } from "react";
 
-export default function ResumeCards({ rangeDateMain, rangeDateCompare }: { rangeDateMain: DateRange; rangeDateCompare: DateRange }) {
+export default function ResumeCards({
+    rangeDateMain,
+    rangeDateCompare,
+    situationsSales,
+}: {
+    rangeDateMain: DateRange;
+    rangeDateCompare: DateRange;
+    situationsSales: string[];
+}) {
     const initialValuesCards = {
         amount: 0,
         oldAmount: 0,
@@ -23,7 +31,7 @@ export default function ResumeCards({ rangeDateMain, rangeDateCompare }: { range
     const { getMainCards } = useGetMainCards();
 
     async function mainCards() {
-        const cards = await getMainCards({ main: rangeDateMain, compare: rangeDateCompare });
+        const cards = await getMainCards({ main: rangeDateMain, compare: rangeDateCompare, situationsSales });
 
         setOrdersProps(cards.salesOrdersQuantity);
         setProductsProps(cards.productsSoldQuantity);
@@ -36,7 +44,7 @@ export default function ResumeCards({ rangeDateMain, rangeDateCompare }: { range
     useEffect(() => {
         mainCards().catch((e) => console.log(e));
         // console.log("oi");
-    }, [rangeDateMain, rangeDateCompare]);
+    }, [rangeDateMain, rangeDateCompare, situationsSales]);
 
     const ordersGrowth: boolean = ordersProps.percent > 0;
     const productsGrowth: boolean = productsProps.percent > 0;
