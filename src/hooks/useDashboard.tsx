@@ -1,5 +1,6 @@
 import { createContext, useEffect } from "react";
 import useLocalStorage from "./useLocalStorage";
+import { getPresetRange } from "@/pages/Dashboard/Dashboard/date-range-picker/utils/utils-picker";
 
 interface DateRangeTimeT {
     from: number;
@@ -8,7 +9,8 @@ interface DateRangeTimeT {
 
 interface DashboardDataT {
     situationsSales: string[];
-    dateRange: DateRangeTimeT;
+    dateRangeMain: DateRangeTimeT;
+    dateRangeCompare: DateRangeTimeT;
 }
 
 interface DashboardContextT {
@@ -16,12 +18,13 @@ interface DashboardContextT {
     setDashboardData: React.Dispatch<React.SetStateAction<DashboardDataT>>;
 }
 
-const initialDateFrom = new Date(2023, 11, 1);
-const initialDateTo = new Date(2023, 11, 31);
-initialDateTo.setHours(23, 59, 59, 999);
+const rangeMain = getPresetRange("thisMonth");
+const rangeCompare = getPresetRange("lastMonth");
+
 const initialValues: DashboardDataT = {
     situationsSales: ["9", "79027"],
-    dateRange: { from: initialDateFrom.getTime(), to: initialDateTo.getTime() },
+    dateRangeMain: { from: rangeMain.from.getTime(), to: rangeMain.to.getTime() },
+    dateRangeCompare: { from: rangeCompare.from.getTime(), to: rangeCompare.to.getTime() },
 };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -33,7 +36,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         setDashboardData(initialValues);
-    }, []);
+    }, [dashboardData]);
 
     return <DashboardContext.Provider value={{ dashboardData, setDashboardData }}>{children}</DashboardContext.Provider>;
 }

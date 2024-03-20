@@ -13,29 +13,36 @@ import DashboardContext from "@/hooks/useDashboard";
 export default function Dashboard() {
     const { dashboardData, setDashboardData } = useContext(DashboardContext);
 
-    const [rangeDate, setRangeDate] = useState<DateRange>({
-        from: new Date(dashboardData.dateRange.from),
-        to: new Date(dashboardData.dateRange.to),
+    const [rangeDateMain, setRangeDateMain] = useState<DateRange>({
+        from: new Date(dashboardData.dateRangeMain.from),
+        to: new Date(dashboardData.dateRangeMain.to),
+    });
+    const [rangeDateCompare, setRangeDateCompare] = useState<DateRange>({
+        from: new Date(dashboardData.dateRangeCompare.from),
+        to: new Date(dashboardData.dateRangeCompare.to),
     });
 
-    function updateRangeDate(newRangeDate: DateRange): void {
-        setRangeDate(newRangeDate);
+    function updateRangeDate(newRangeDate: DateRange, rangeType: "main" | "compare"): void {
+        const [setRangeDateFunction, dateRangeKey] =
+            rangeType === "main" ? [setRangeDateMain, "dateRangeMain"] : [setRangeDateCompare, "dateRangeCompare"];
+
+        setRangeDateFunction(newRangeDate);
 
         const newRangeDateTime = {
             from: newRangeDate.from.getTime(),
             to: newRangeDate.to.getTime(),
         };
-        setDashboardData({ ...dashboardData, dateRange: newRangeDateTime });
+        setDashboardData({ ...dashboardData, [dateRangeKey]: newRangeDateTime });
     }
 
     return (
         <>
             <Tabs defaultValue="overview" className="space-y-4">
                 <TabsContent value="overview" className="space-y-4">
-                    <FilterOptions rangeDate={rangeDate} setRangeDate={updateRangeDate} />
-                    <ResumeCards />
+                    <FilterOptions rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} setRangeDateMain={updateRangeDate} />
+                    <ResumeCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} />
                     <div className="grid gap-4 grid-cols-6 min-[1360px]:grid-cols-5">
-                        <Markup rangeDate={rangeDate} />
+                        <Markup rangeDateMain={rangeDateMain} />
                         <BlingStatus categoriesData={categories_data} />
                         <CardsMid cards={mid_cards_data} />
                     </div>

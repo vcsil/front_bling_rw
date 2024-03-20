@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator";
 
 import { data } from "@/pages/Dashboard/Dashboard/constants";
 
-export default function Markup({ rangeDate }: MarkupProps) {
+export default function Markup({ rangeDateMain: rangeDate }: MarkupProps) {
     const { colors: themeColors } = useContext(ThemeProviderContext);
     const dateRangeFrom = useFormattedDate(rangeDate.from, "pt-br");
     const dateRangeTo = useFormattedDate(rangeDate.to, "pt-br");

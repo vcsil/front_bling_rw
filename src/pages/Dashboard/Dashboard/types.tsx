@@ -7,12 +7,13 @@ export interface CardsProps {
 }
 
 export interface FilterOptionsProps {
-    rangeDate: DateRange;
-    setRangeDate: (_dateRange: DateRange) => void;
+    rangeDateMain: DateRange;
+    rangeDateCompare: DateRange;
+    setRangeDateMain: (_dateRange: DateRange, _rangeType: "main" | "compare") => void;
 }
 
 export interface MarkupProps {
-    rangeDate: DateRange;
+    rangeDateMain: DateRange;
 }
 
 export interface StatusCategoryProps {

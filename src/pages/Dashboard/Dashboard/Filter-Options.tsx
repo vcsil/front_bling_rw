@@ -7,15 +7,7 @@ import { FancyMultiSelect } from "@/pages/Dashboard/Dashboard/multi-select/fancy
 import { DateRangePicker } from "@/pages/Dashboard/Dashboard/date-range-picker/date-range-picker";
 import { FilterOptionsProps } from "@/pages/Dashboard/Dashboard//types";
 
-export default function FilterOptions({ rangeDate, setRangeDate }: FilterOptionsProps): JSX.Element {
-    const initialDateFromCompare = new Date(rangeDate.from.valueOf());
-    initialDateFromCompare.setMonth(initialDateFromCompare.getMonth() - 1);
-    initialDateFromCompare.setDate(1);
-    initialDateFromCompare.setHours(0, 0, 0, 0);
-    const initialDateToCompare = new Date(rangeDate.to.valueOf());
-    initialDateToCompare.setDate(0);
-    initialDateToCompare.setHours(23, 59, 59, 999);
-
+export default function FilterOptions({ rangeDateMain, rangeDateCompare, setRangeDateMain }: FilterOptionsProps): JSX.Element {
     return (
         <div className="grid gap-4 grid-cols-2 min-[1360px]:grid-cols-10">
             <Card className="col-span-2 min-[1360px]:col-span-4">
@@ -35,9 +27,9 @@ export default function FilterOptions({ rangeDate, setRangeDate }: FilterOptions
                         <Separator orientation="vertical" />
                         <div className="flex h-full w-full">
                             <DateRangePicker
-                                onUpdate={(values) => setRangeDate(values.range)}
-                                initialDateFrom={rangeDate.from}
-                                initialDateTo={rangeDate.to}
+                                onUpdate={(values) => setRangeDateMain(values.range, "main")}
+                                initialDateFrom={rangeDateMain.from}
+                                initialDateTo={rangeDateMain.to}
                                 align="start"
                                 locale="pt-BR"
                                 showCompare={false}
@@ -56,9 +48,9 @@ export default function FilterOptions({ rangeDate, setRangeDate }: FilterOptions
                         <Separator orientation="vertical" />
                         <div className="flex h-full w-full">
                             <DateRangePicker
-                                onUpdate={(values) => console.log(values)}
-                                initialDateFrom={initialDateFromCompare}
-                                initialDateTo={initialDateToCompare}
+                                onUpdate={(values) => setRangeDateMain(values.range, "compare")}
+                                initialDateFrom={rangeDateCompare.from}
+                                initialDateTo={rangeDateCompare.to}
                                 align="start"
                                 locale="pt-BR"
                                 showCompare={false}

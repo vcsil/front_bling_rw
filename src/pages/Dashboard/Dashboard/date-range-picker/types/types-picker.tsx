@@ -59,3 +59,8 @@ export interface CalendarPickerProps {
     range: DateRange;
     setRange: Dispatch<SetStateAction<DateRange>>;
 }
+
+export interface DateRangeMainCompare {
+    main: DateRange;
+    compare: DateRange;
+}

@@ -6,7 +6,7 @@ import { ArrowBigDown, ArrowBigUp } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 import { CardsMidProps, MidCardProps, CardComponentCarouselProps } from "@/pages/Dashboard/Dashboard/types";
-import { formatMoeda, formatPercent } from "@/pages/Dashboard/Dashboard/utils";
+import { formatMoeda, formatPercentToString } from "@/pages/Dashboard/Dashboard/utils";
 
 function CardComponent({ card, isLast, isSmallScreen }: MidCardProps): JSX.Element {
     const isPositive = card.percent > 0;
@@ -18,16 +18,18 @@ function CardComponent({ card, isLast, isSmallScreen }: MidCardProps): JSX.Eleme
                     {isPositive ? (
                         <>
                             <ArrowBigUp color="var(--cor-verde)" />
-                            <h3 className="text-[var(--cor-verde)]">{formatPercent(card.percent)}</h3>
+                            <h3 className="text-[var(--cor-verde)]">{formatPercentToString(card.percent)}</h3>
                         </>
                     ) : (
                         <>
                             <ArrowBigDown color="var(--cor-vermelho)" />
-                            <h3 className="text-[var(--cor-vermelho)]">{formatPercent(card.percent)}</h3>
+                            <h3 className="text-[var(--cor-vermelho)]">{formatPercentToString(card.percent)}</h3>
                         </>
                     )}
                 </div>
-                <h3 className="text-xl font-bold">{card.name === "Percentual" ? formatPercent(card.value) : formatMoeda(card.value)}</h3>
+                <h3 className="text-xl font-bold">
+                    {card.name === "Percentual" ? formatPercentToString(card.value) : formatMoeda(card.value)}
+                </h3>
                 <h3 className="text-lg">{card.name}</h3>
             </div>
             {!isLast && <Separator orientation={!isSmallScreen ? "vertical" : "horizontal"} />}
@@ -45,17 +47,17 @@ function CardComponentCarousel({ card }: CardComponentCarouselProps): JSX.Elemen
                         {isPositive ? (
                             <>
                                 <ArrowBigUp color="var(--cor-verde)" />
-                                <h3 className="text-[var(--cor-verde)]">{formatPercent(card.percent)}</h3>
+                                <h3 className="text-[var(--cor-verde)]">{formatPercentToString(card.percent)}</h3>
                             </>
                         ) : (
                             <>
                                 <ArrowBigDown color="var(--cor-vermelho)" />
-                                <h3 className="text-[var(--cor-vermelho)]">{formatPercent(card.percent)}</h3>
+                                <h3 className="text-[var(--cor-vermelho)]">{formatPercentToString(card.percent)}</h3>
                             </>
                         )}
                     </div>
                     <h3 className="text-xl font-bold">
-                        {card.name === "Percentual" ? formatPercent(card.value) : formatMoeda(card.value)}
+                        {card.name === "Percentual" ? formatPercentToString(card.value) : formatMoeda(card.value)}
                     </h3>
                     <h3 className="text-lg">{card.name}</h3>
                 </div>
