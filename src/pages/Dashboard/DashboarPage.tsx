@@ -1,13 +1,27 @@
+import { formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale";
 import styled from "styled-components";
 
 import Dashboard from "@/pages/Dashboard/Dashboard/Dashboard";
+import useGetLastUpdateTime from "@/hooks/api/useGetLastUpdateTime";
+import { useEffect, useState } from "react";
 
 export default function DashboardPage() {
+    const [updateTime, setUpdateTime] = useState<string>("");
+
+    const { lastUpdateTime, lastUpdateTimeLoading } = useGetLastUpdateTime();
+
+    useEffect(() => {
+        if (!lastUpdateTimeLoading) {
+            setUpdateTime(formatDistanceToNow(new Date(lastUpdateTime), { includeSeconds: true, addSuffix: true, locale: ptBR }));
+        }
+    }, [lastUpdateTimeLoading]);
+
     return (
         <>
             <Titulo>Dashboard</Titulo>
             <Subtitulo>
-                Ultima atualização há: <span>30 minutos</span>
+                Ultima atualização: <span>{updateTime}</span>
             </Subtitulo>
             <Dashboard />
             <h1>iuu</h1>
