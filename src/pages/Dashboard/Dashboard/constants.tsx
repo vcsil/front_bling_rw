@@ -18,52 +18,6 @@ for (let j = 1; j < 3; j++) {
     }
 }
 
-const categories_data = {
-    categories: [
-        {
-            category: "Cancelado",
-            quantity: 64,
-            color: "bg-[var(--cor-vermelho)]",
-        },
-        {
-            category: "Em aberto",
-            quantity: 12,
-            color: "bg-[var(--cor-amarelo)]",
-        },
-        {
-            category: "Em andamento",
-            quantity: 55,
-            color: "bg-[var(--cor-verde)]",
-        },
-        {
-            category: "Verificado",
-            quantity: 437,
-            color: "bg-[var(--cor-verde)]",
-        },
-        {
-            category: "Finalizado",
-            quantity: 50,
-            color: "bg-[var(--cor-verde)]",
-        },
-        {
-            category: "Troca",
-            quantity: 10,
-            color: "bg-[var(--cor-amarelo)]",
-        },
-        {
-            category: "Experimental",
-            quantity: 10,
-            color: "bg-[var(--cor-vermelho)]",
-        },
-        {
-            category: "Casada",
-            quantity: 10,
-            color: "bg-[var(--cor-amarelo)]",
-        },
-    ],
-    total: 648,
-};
-
 const mid_cards_data = [
     {
         name: "Faturamento sem frete",
@@ -87,4 +41,4 @@ const mid_cards_data = [
     },
 ];
 
-export { data, categories_data, mid_cards_data };
+export { data, mid_cards_data };

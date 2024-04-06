@@ -1,7 +1,7 @@
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 
 import { DateRange } from "@/pages/Dashboard/Dashboard/date-range-picker/types/types-picker";
-import { categories_data, mid_cards_data } from "@/pages/Dashboard/Dashboard/constants";
+import { mid_cards_data } from "@/pages/Dashboard/Dashboard/constants";
 import FilterOptions from "@/pages/Dashboard/Dashboard/Filter-Options";
 import ResumeCards from "@/pages/Dashboard/Dashboard/Resume-Cards";
 import BlingStatus from "@/pages/Dashboard/Dashboard/Bling-Status";
@@ -50,7 +50,7 @@ export default function Dashboard() {
                     <ResumeCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} situationsSales={situationsSales} />
                     <div className="grid gap-4 grid-cols-6 min-[1360px]:grid-cols-5">
                         <Markup rangeDateMain={rangeDateMain} />
-                        <BlingStatus categoriesData={categories_data} />
+                        <BlingStatus dateRange={rangeDateMain} />
                         <CardsMid cards={mid_cards_data} />
                     </div>
                 </TabsContent>

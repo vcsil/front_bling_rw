@@ -18,22 +18,15 @@ export interface MarkupProps {
     rangeDateMain: DateRange;
 }
 
-export interface StatusCategoryProps {
-    category: string;
+export interface OrderSalesStatusProps {
+    status: string;
     quantity: number;
     color: string;
     total: number;
 }
 
 export interface BlingStatusProps {
-    categoriesData: {
-        categories: {
-            category: string;
-            quantity: number;
-            color: string;
-        }[];
-        total: number;
-    };
+    dateRange: DateRange;
 }
 
 export interface MidCardsData {
@@ -59,4 +52,15 @@ export interface CardComponentCarouselProps {
 export interface FancyMultiSelectProps {
     situationsSales: string[];
     setSituationsSales: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+export interface BlingOrderStatus {
+    nome: string;
+    cor: string;
+    total: string;
+}
+
+export interface OrderStatusTotal {
+    blingOrderStatus: BlingOrderStatus[];
+    total: number;
 }
