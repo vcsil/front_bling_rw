@@ -49,7 +49,7 @@ export default function Dashboard() {
                     />
                     <ResumeCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} situationsSales={situationsSales} />
                     <div className="grid gap-4 grid-cols-6 min-[1360px]:grid-cols-5">
-                        <Markup rangeDateMain={rangeDateMain} />
+                        <Markup rangeDateMain={rangeDateMain} situationsSales={situationsSales} />
                         <BlingStatus dateRange={rangeDateMain} />
                         <CardsMid cards={mid_cards_data} />
                     </div>

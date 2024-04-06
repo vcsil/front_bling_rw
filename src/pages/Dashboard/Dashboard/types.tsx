@@ -16,6 +16,7 @@ export interface FilterOptionsProps {
 
 export interface MarkupProps {
     rangeDateMain: DateRange;
+    situationsSales: string[];
 }
 
 export interface OrderSalesStatusProps {
@@ -63,4 +64,14 @@ export interface BlingOrderStatus {
 export interface OrderStatusTotal {
     blingOrderStatus: BlingOrderStatus[];
     total: number;
+}
+
+export interface GetOrderSalesPerDayT {
+    date: string;
+    value: string;
+}
+
+export interface OrderSalesPerDayT {
+    date: number;
+    value: number;
 }

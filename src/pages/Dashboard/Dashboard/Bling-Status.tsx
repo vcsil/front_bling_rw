@@ -14,7 +14,6 @@ const _init_colors =
 function OrderSalesStatus({ status, quantity, color, total }: OrderSalesStatusProps): JSX.Element {
     const tailwindColor = `bg-[${color}]`;
 
-    console.log("🚀 ~ OrderSalesStatus ~ tailwindColor:", tailwindColor);
     return (
         <div className="py-3 space-y-2">
             <div className="flex justify-between">
