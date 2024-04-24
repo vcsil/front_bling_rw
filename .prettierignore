@@ -3,3 +3,5 @@ node_modules/
 dist/
 tailwind.config.js
 src/components/ui/
+.devcontainer/
+**/Docker*
