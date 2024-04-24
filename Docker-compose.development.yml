@@ -1,6 +1,7 @@
 services:
   rw_front:
     container_name: rw_front
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile
