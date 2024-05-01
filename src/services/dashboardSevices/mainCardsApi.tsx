@@ -1,4 +1,5 @@
 import { GetMainCardsProps } from "@/pages/Dashboard/Dashboard/date-range-picker/types/types-picker";
+import { formatDataToString } from "../utils";
 import api from "@/services/api";
 
 interface MainCardsReturnT {
@@ -16,10 +17,10 @@ interface AllCardsReturnT {
 
 export async function getMainCards(cardsProps: GetMainCardsProps): Promise<AllCardsReturnT> {
     const queryParams = {
-        mainDateFrom: cardsProps.main.from.toJSON().split("T")[0],
-        mainDateTo: cardsProps.main.to.toJSON().split("T")[0],
-        compareDateFrom: cardsProps.compare.from.toJSON().split("T")[0],
-        compareDateTo: cardsProps.compare.to.toJSON().split("T")[0],
+        mainDateFrom: formatDataToString(cardsProps.main.from),
+        mainDateTo: formatDataToString(cardsProps.main.to),
+        compareDateFrom: formatDataToString(cardsProps.compare.from),
+        compareDateTo: formatDataToString(cardsProps.compare.to),
         situationsSales: cardsProps.situationsSales,
     };
 
