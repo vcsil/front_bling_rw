@@ -13,8 +13,8 @@ services:
     volumes:
       - .:/usr/src/front
     networks:
-      - rw_network
+      - 01-bancodedados_default
 
 networks:
-  rw_network:
+  01-bancodedados_default:
     external: true
