@@ -35,18 +35,20 @@ export default function Dashboard() {
 
     return (
         <>
-            <FilterOptions
-                rangeDateMain={rangeDateMain}
-                rangeDateCompare={rangeDateCompare}
-                setRangeDateMain={updateRangeDate}
-                situationsSales={situationsSales}
-                setSituationsSales={setSituationsSales}
-            />
-            <ResumeCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} situationsSales={situationsSales} />
-            <div className="grid gap-4 grid-cols-6 min-[1360px]:grid-cols-5">
-                <Markup rangeDateMain={rangeDateMain} situationsSales={situationsSales} />
-                <BlingStatus dateRange={rangeDateMain} />
-                <FinancialCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} />
+            <div defaultValue="overview" className="space-y-4">
+                <FilterOptions
+                    rangeDateMain={rangeDateMain}
+                    rangeDateCompare={rangeDateCompare}
+                    setRangeDateMain={updateRangeDate}
+                    situationsSales={situationsSales}
+                    setSituationsSales={setSituationsSales}
+                />
+                <ResumeCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} situationsSales={situationsSales} />
+                <div className="grid gap-4 grid-cols-6 min-[1360px]:grid-cols-5">
+                    <Markup rangeDateMain={rangeDateMain} situationsSales={situationsSales} />
+                    <BlingStatus dateRange={rangeDateMain} />
+                    <FinancialCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} />
+                </div>
             </div>
         </>
     );

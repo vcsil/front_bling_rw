@@ -35,6 +35,7 @@ const Titulo = styled.h1`
 `;
 
 const Subtitulo = styled.p`
+    margin-bottom: 0.5rem;
     span {
         color: #d88225;
     }
