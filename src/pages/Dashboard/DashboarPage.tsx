@@ -24,7 +24,6 @@ export default function DashboardPage() {
                 Ultima atualização: <span>{updateTime}</span>
             </Subtitulo>
             <Dashboard />
-            <h1>iuu</h1>
         </>
     );
 }
