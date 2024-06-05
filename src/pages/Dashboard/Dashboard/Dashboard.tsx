@@ -1,11 +1,10 @@
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 
 import { DateRange } from "@/pages/Dashboard/Dashboard/date-range-picker/types/types-picker";
-import { mid_cards_data } from "@/pages/Dashboard/Dashboard/constants";
 import FilterOptions from "@/pages/Dashboard/Dashboard/Filter-Options";
 import ResumeCards from "@/pages/Dashboard/Dashboard/Resume-Cards";
 import BlingStatus from "@/pages/Dashboard/Dashboard/Bling-Status";
-import CardsMid from "@/pages/Dashboard/Dashboard/Cards-Mid";
+import FinancialCards from "@/pages/Dashboard/Dashboard/Financial-Cards";
 import Markup from "@/pages/Dashboard/Dashboard/Markup";
 import { useContext, useState } from "react";
 import DashboardContext from "@/hooks/useDashboard";
@@ -51,7 +50,7 @@ export default function Dashboard() {
                     <div className="grid gap-4 grid-cols-6 min-[1360px]:grid-cols-5">
                         <Markup rangeDateMain={rangeDateMain} situationsSales={situationsSales} />
                         <BlingStatus dateRange={rangeDateMain} />
-                        <CardsMid cards={mid_cards_data} />
+                        <FinancialCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} />
                     </div>
                 </TabsContent>
             </Tabs>

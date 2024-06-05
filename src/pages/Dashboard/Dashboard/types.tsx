@@ -30,24 +30,30 @@ export interface BlingStatusProps {
     dateRange: DateRange;
 }
 
-export interface MidCardsData {
+export interface FinancialCardsData {
     name: string;
-    value: number;
+    main: number;
+    compare: number;
     percent: number;
 }
 
-export interface MidCardProps {
-    card: MidCardsData;
+export interface CardFinancialProps {
+    card: FinancialCardsData;
+    isPercent: boolean;
+    setIsPercent: React.Dispatch<React.SetStateAction<boolean>>;
     isLast: boolean;
     isSmallScreen: boolean;
 }
 
-export interface CardsMidProps {
-    cards: MidCardsData[];
+export interface FinancialCardsProps {
+    rangeDateMain: DateRange;
+    rangeDateCompare: DateRange;
 }
 
 export interface CardComponentCarouselProps {
-    card: MidCardsData;
+    card: FinancialCardsData;
+    isPercent: boolean;
+    setIsPercent: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface FancyMultiSelectProps {
