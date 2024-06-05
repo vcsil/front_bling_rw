@@ -1,5 +1,3 @@
-import { Tabs, TabsContent } from "@/components/ui/tabs";
-
 import { DateRange } from "@/pages/Dashboard/Dashboard/date-range-picker/types/types-picker";
 import FilterOptions from "@/pages/Dashboard/Dashboard/Filter-Options";
 import ResumeCards from "@/pages/Dashboard/Dashboard/Resume-Cards";
@@ -37,23 +35,19 @@ export default function Dashboard() {
 
     return (
         <>
-            <Tabs defaultValue="overview" className="space-y-4">
-                <TabsContent value="overview" className="space-y-4">
-                    <FilterOptions
-                        rangeDateMain={rangeDateMain}
-                        rangeDateCompare={rangeDateCompare}
-                        setRangeDateMain={updateRangeDate}
-                        situationsSales={situationsSales}
-                        setSituationsSales={setSituationsSales}
-                    />
-                    <ResumeCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} situationsSales={situationsSales} />
-                    <div className="grid gap-4 grid-cols-6 min-[1360px]:grid-cols-5">
-                        <Markup rangeDateMain={rangeDateMain} situationsSales={situationsSales} />
-                        <BlingStatus dateRange={rangeDateMain} />
-                        <FinancialCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} />
-                    </div>
-                </TabsContent>
-            </Tabs>
+            <FilterOptions
+                rangeDateMain={rangeDateMain}
+                rangeDateCompare={rangeDateCompare}
+                setRangeDateMain={updateRangeDate}
+                situationsSales={situationsSales}
+                setSituationsSales={setSituationsSales}
+            />
+            <ResumeCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} situationsSales={situationsSales} />
+            <div className="grid gap-4 grid-cols-6 min-[1360px]:grid-cols-5">
+                <Markup rangeDateMain={rangeDateMain} situationsSales={situationsSales} />
+                <BlingStatus dateRange={rangeDateMain} />
+                <FinancialCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} />
+            </div>
         </>
     );
 }
