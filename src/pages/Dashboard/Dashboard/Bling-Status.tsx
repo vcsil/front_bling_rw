@@ -9,7 +9,7 @@ import useGetOrderStatus from "@/hooks/api/useGetOrderStatus";
 import { useEffect, useState } from "react";
 
 const _init_colors =
-    "bg-[#E9DC40] bg-[#3FB57A] bg-[#CBCBCB] bg-[#0065F9] bg-[#FF7835] bg-[#FF66E3] bg-[#85F39E] bg-[#c946e6] bg-[#00fbff] bg-[#fff700] bg-[#ff0000] bg-[#ffa200] bg-[#006b07] bg-[#ff5cd3] bg-[#E9DC40] bg-[#3FB57A] bg-[#CBCBCB] bg-[#0065F9]";
+    "bg-[#E9DC40] bg-[#3FB57A] bg-[#CBCBCB] bg-[#0065F9] bg-[#FF7835] bg-[#FF66E3] bg-[#85F39E] bg-[#c946e6] bg-[#00fbff] bg-[#fff700] bg-[#ff0000] bg-[#ffa200] bg-[#006b07] bg-[#ff5cd3] bg-[#E9DC40] bg-[#3FB57A] bg-[#CBCBCB] bg-[#0065F9] bg-[#98ef15]";
 
 function OrderSalesStatus({ status, quantity, color, total }: OrderSalesStatusProps): JSX.Element {
     const tailwindColor = `bg-[${color}]`;
