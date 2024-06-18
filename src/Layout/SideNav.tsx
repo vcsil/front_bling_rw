@@ -12,7 +12,7 @@ import { useSidebar } from "@/hooks/useSidebar";
 
 interface SideNavProps {
     items: NavItem[];
-    setOpen?: (open: boolean) => void;
+    setOpen?: (_open: boolean) => void;
     className?: string;
 }
 
