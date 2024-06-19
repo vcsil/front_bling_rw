@@ -35,6 +35,7 @@ export interface FinancialCardsData {
     main: number;
     compare: number;
     percent: number;
+    details: string;
 }
 
 export interface CardFinancialProps {

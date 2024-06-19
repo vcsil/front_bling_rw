@@ -18,7 +18,7 @@ function CardComponent({ card, isPercent, setIsPercent, isLast, isSmallScreen }:
 
     return (
         <>
-            <div className="w-full flex flex-col justify-center items-center py-8">
+            <div className="w-full flex flex-col justify-center items-center py-8" title={card.details}>
                 <button className="flex cursor-pointer" onClick={financialCardClick} onKeyDown={financialCardClick}>
                     {isPositive ? (
                         <>
@@ -64,7 +64,7 @@ function CardComponentCarousel({ card, isPercent, setIsPercent }: CardComponentC
     return (
         <CarouselItem className="min-[1140px]:w-20">
             <Card className="flex justify-center items-center py-5 border-0 min-[1140px]:border">
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center" title={card.details}>
                     <button className="flex mb-1.5 cursor-pointer" onClick={financialCardClick} onKeyDown={financialCardClick}>
                         {isPositive ? (
                             <>
@@ -109,6 +109,7 @@ export default function FinancialCards({ rangeDateMain, rangeDateCompare }: Fina
         main: 0,
         compare: 0,
         percent: 0,
+        details: "Loading...",
     };
     const [cards, setCards] = useState<FinancialCardsData[]>([
         initialValuesCards,
