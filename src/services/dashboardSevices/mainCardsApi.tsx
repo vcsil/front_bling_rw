@@ -1,5 +1,5 @@
 import { GetMainCardsProps } from "@/pages/Dashboard/Dashboard/date-range-picker/types/types-picker";
-import { formatDataToString } from "../utils";
+import { formatDataToString } from "@/services/utils";
 import api from "@/services/api";
 
 interface MainCardsReturnT {

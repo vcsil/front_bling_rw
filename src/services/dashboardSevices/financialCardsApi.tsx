@@ -1,7 +1,7 @@
 import api from "@/services/api";
 
 import { FinancialCardsData, FinancialCardsProps } from "@/pages/Dashboard/Dashboard/types";
-import { formatDataToString } from "../utils";
+import { formatDataToString } from "@/services/utils";
 
 export async function getFinancialCardsPerPeriod({ rangeDateMain, rangeDateCompare }: FinancialCardsProps): Promise<FinancialCardsData[]> {
     const queryParam = {
