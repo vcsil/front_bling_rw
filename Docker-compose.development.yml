@@ -1,10 +1,10 @@
 services:
-  rw_front:
-    container_name: rw_front
+  development-rw_front:
+    container_name: development-rw_front
     restart: always
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.development
     env_file:
       - .env
     ports:
@@ -13,8 +13,8 @@ services:
     volumes:
       - .:/usr/src/front
     networks:
-      - 01-bancodedados_default
+      - development-rw_network
 
 networks:
-  01-bancodedados_default:
+  development-rw_network:
     external: true
