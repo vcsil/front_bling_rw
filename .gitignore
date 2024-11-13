@@ -29,3 +29,6 @@ dist-ssr
 .devcontainer/
 .github
 .vscode
+
+# Imagens
+/public/local_images/
