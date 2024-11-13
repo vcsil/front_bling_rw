@@ -1,6 +1,8 @@
 import { ProductReadProps } from "@/pages/Balanco/types";
 
 export default function ProductRead({ codeProduct, nameProduct, reads, totalDeposit }: ProductReadProps): JSX.Element {
+    const diference = reads && totalDeposit ? reads - totalDeposit : undefined;
+
     return (
         <fieldset className="rounded-lg border bg-card p-4">
             <legend className="-ml-1 px-1 text-sm font-medium">Produto lido</legend>
@@ -20,7 +22,7 @@ export default function ProductRead({ codeProduct, nameProduct, reads, totalDepo
                         <td className="px-2 pt-4 pb-1 whitespace-nowrap text-sm ">{nameProduct}</td>
                         <td className="px-2 pt-4 pb-1 whitespace-nowrap text-sm  text-center">{reads}</td>
                         <td className="px-2 pt-4 pb-1 whitespace-nowrap text-sm  text-center">{totalDeposit}</td>
-                        <td className="px-2 pt-4 pb-1 whitespace-nowrap text-sm  text-center">{reads - totalDeposit}</td>
+                        <td className="px-2 pt-4 pb-1 whitespace-nowrap text-sm  text-center">{diference}</td>
                     </tr>
                 </tbody>
             </table>

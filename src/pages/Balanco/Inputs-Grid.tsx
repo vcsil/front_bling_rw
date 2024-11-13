@@ -1,43 +1,46 @@
+import { useEffect } from "react";
+
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Skeleton } from "@/components/ui/skeleton";
 
-import { DepositsT, InputsGridProps } from "./types";
 import useGetDeposits from "@/hooks/api/Balance/useGetDeposits";
-import { useEffect, useState } from "react";
-import AlertModal from "@/components/modals/alertModal";
+import { InputsGridProps } from "@/pages/Balanco/types";
+import { Card } from "@/components/ui/card";
 
 export default function InputsGrid({
     idDeposit,
     setIdDeposit,
-    totalRead,
+    idDepositLocalStorage,
+    setIdDepositLocalStorage,
     unit,
     setUnit,
     codeProduct,
     setCodeProduct,
+    logsProducts,
+    errorHandling,
+    addLogsProducts,
+    BoxAviso,
+    product,
+    totalRead,
 }: InputsGridProps): JSX.Element {
-    const [depositAlert, setDepositAlert] = useState<boolean>(false);
-    const [allDeposits, setAllDeposits] = useState<DepositsT[]>([{ id: 0, nome: "carregando.." }]);
-    const { getDeposits } = useGetDeposits();
-
-    async function getAllDeposits() {
-        const cardsApi = await getDeposits();
-
-        setAllDeposits(cardsApi);
-
-        return;
-    }
-
+    const { deposits, depositsLoading, depositsError } = useGetDeposits();
     useEffect(() => {
-        getAllDeposits().catch((e) => console.log(e));
-        // console.log("oi");
-    }, []);
+        if (depositsError && depositsError instanceof Error) {
+            errorHandling(depositsError);
+        }
+    }, [depositsError]);
 
     function alterDeposit(nameDeposit: string) {
-        const deposit = allDeposits.find((dep) => dep.nome === nameDeposit);
+        if (deposits) {
+            const deposit = deposits.find((dep) => dep.nome === nameDeposit);
 
-        if (deposit) {
-            setIdDeposit(deposit.id);
+            if (deposit) {
+                setIdDeposit(deposit.id);
+                setIdDepositLocalStorage([{ idDeposit: deposit.id, nome: deposit.nome }]);
+            }
+            return;
         }
     }
 
@@ -48,16 +51,32 @@ export default function InputsGrid({
         }
     }
 
-    function alterIdProduct(e: React.KeyboardEvent<HTMLInputElement>) {
+    function alterCodeProduct(e: React.KeyboardEvent<HTMLInputElement> & { target: { value: string } }) {
         if (e.key === "Enter") {
-            if (allDeposits.find((dep) => dep.id === idDeposit)) {
-                setCodeProduct(Number(e.target.value));
+            // Só inclui produto se o deposito estiver selecionado
+            if (idDeposit) {
+                // Verifica se o produto é repetido pois não altera o estado para ativar o useEffect.
+                const repeatedProduct = codeProduct === e.target.value;
+                if (product && repeatedProduct) {
+                    addLogsProducts(
+                        logsProducts && logsProducts.length > 0 ? logsProducts[logsProducts.length - 1].id + 3 : 1,
+                        Number(product.id_bling),
+                        unit,
+                        product.codigo,
+                        product.nome,
+                    );
+                }
+
+                setCodeProduct(e.target.value);
                 e.target.value = "";
+
                 e.preventDefault();
                 return;
             }
-            setDepositAlert(!depositAlert);
+
+            BoxAviso("Selecione o depósito!", "Para iniciar a contagem das peças é necessário definir qual depósito será considerado.");
             e.preventDefault();
+            return;
         }
     }
 
@@ -65,18 +84,24 @@ export default function InputsGrid({
         <div className="grid gap-4 grid-cols-2 min-[1360px]:grid-cols-5">
             <div className="col-span-2 min-[1360px]:col-span-3 space-y-1.5">
                 <Label htmlFor="deposit">Depósito</Label>
-                <Select onValueChange={alterDeposit} disabled={Boolean(idDeposit)}>
-                    <SelectTrigger id="deposit">
-                        <SelectValue placeholder="Selecione" />
-                    </SelectTrigger>
-                    <SelectContent position="popper">
-                        {allDeposits.map((deposit, index) => (
-                            <SelectItem key={index} value={deposit.nome}>
-                                {deposit.nome}
-                            </SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
+                {depositsLoading || depositsError ? (
+                    <Card className="h-10 flex items-center" id="deposit">
+                        <Skeleton className="w-1/3 h-[10px] m-2" />
+                    </Card>
+                ) : (
+                    <Select onValueChange={alterDeposit} disabled={Boolean(idDeposit)}>
+                        <SelectTrigger id="deposit">
+                            <SelectValue placeholder={idDepositLocalStorage[0]?.nome || "Selecione"} />
+                        </SelectTrigger>
+                        <SelectContent position="popper">
+                            {deposits?.map((deposit, index) => (
+                                <SelectItem key={index} value={deposit.nome}>
+                                    {deposit.nome}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                )}
             </div>
             <div className="col-span-2 lg:col-span-1 min-[1360px]:col-span-2 space-y-1.5">
                 <Label htmlFor="read">Total lidos</Label>
@@ -88,16 +113,8 @@ export default function InputsGrid({
             </div>
             <div className="col-span-2 min-[1360px]:col-span-3 space-y-1.5">
                 <Label htmlFor="code">Código do produto</Label>
-                <Input id="code" onKeyDown={alterIdProduct} />
+                <Input id="code" onKeyDown={alterCodeProduct} />
             </div>
-            {depositAlert ? (
-                <AlertModal
-                    title={"Selecione o depósito"}
-                    description={"Para iniciar a contagem das peças é necessário definir qual deposito sera considerado."}
-                    show={depositAlert}
-                    setShow={setDepositAlert}
-                />
-            ) : null}
         </div>
     );
 }

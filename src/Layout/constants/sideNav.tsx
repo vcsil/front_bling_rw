@@ -1,4 +1,4 @@
-import { BookOpenCheck, LayoutDashboard, BadgeDollarSign, Boxes } from "lucide-react";
+import { BookOpenCheck, LayoutDashboard, BadgeDollarSign, Boxes, PackageOpen } from "lucide-react";
 import { type NavItem } from "@/Layout/types";
 
 export const NavItems: NavItem[] = [
@@ -28,7 +28,20 @@ export const NavItems: NavItem[] = [
         icon: Boxes,
         href: "/balanco",
         color: "text-yellow-500",
-        isChidren: false,
-        children: [],
+        isChidren: true,
+        children: [
+            {
+                title: "balanco",
+                icon: Boxes,
+                color: "text-yellow-500",
+                href: "/balanco",
+            },
+            {
+                title: "Comparação",
+                icon: PackageOpen,
+                color: "text-yellow-500",
+                href: "/balanco/compare",
+            },
+        ],
     },
 ];

@@ -1,24 +1,27 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Trash2 } from "lucide-react";
-import { FaCheck } from "react-icons/fa";
 
-export default function HistoryRead(): JSX.Element {
-    const logs = [
-        { id: 1, code: 322, name: "Conjunto Mamma Mia" },
-        { id: 2, code: 586, name: "Bracelete Lince" },
-        { id: 1, code: 322, name: "Conjunto Mamma Mia" },
-        { id: 2, code: 586, name: "Bracelete Lince" },
-        { id: 1, code: 322, name: "Conjunto Mamma Mia" },
-        { id: 2, code: 586, name: "Bracelete Lince" },
-        { id: 1, code: 322, name: "Conjunto Mamma Mia" },
-        { id: 2, code: 586, name: "Bracelete Lince" },
-        { id: 1, code: 322, name: "Conjunto Mamma Mia" },
-        { id: 2, code: 586, name: "Bracelete Lince" },
-        { id: 1, code: 322, name: "Conjunto Mamma Mia" },
-        { id: 2, code: 586, name: "Bracelete Lince" },
-        { id: 1, code: 322, name: "Conjunto Mamma Mia" },
-        { id: 2, code: 586, name: "Bracelete Lince" },
-    ];
+import LogProducts from "@/pages/Balanco/LogsHistory";
+import { HistoryReadProps } from "@/pages/Balanco/types";
+import { useEffect } from "react";
+
+export default function HistoryRead({
+    setTotalRead,
+    logsProducts,
+    setLogsProducts,
+    conferenceProducts,
+    setConferenceProducts,
+    BoxAviso,
+}: HistoryReadProps): JSX.Element {
+    useEffect(() => {
+        if (logsProducts && logsProducts.length > 0) {
+            const totalRead = logsProducts.reduce((total, productCurrent) => {
+                return total + productCurrent.quantityRead;
+            }, 0);
+            setTotalRead(totalRead);
+            return;
+        }
+        setTotalRead(0);
+    }, [logsProducts]);
 
     return (
         <fieldset className="rounded-lg border bg-card p-4">
@@ -26,19 +29,21 @@ export default function HistoryRead(): JSX.Element {
             <ScrollArea className="h-36 min-[1360px]:h-[103px] min-[1400px]:h-96">
                 <table className="min-w-full">
                     <tbody className="divide-y">
-                        {logs.map((log, index) => (
-                            <tr key={index}>
-                                <td className="px-4 py-2 whitespace-nowrap">
-                                    <div className="flex items-center">
-                                        <FaCheck className="mr-2 cursor-pointer" color="#21A747" />
-                                        <span className="text-sm">{`1 x ${log.code} - ${log.name}`}</span>
-                                    </div>
-                                </td>
-                                <td className="px-4 py-2 whitespace-nowrap flex justify-end">
-                                    <Trash2 className="cursor-pointer" color="#DF3447" width={16} />
-                                </td>
-                            </tr>
-                        ))}
+                        {logsProducts
+                            ?.slice()
+                            .reverse()
+                            .map((log, index) => (
+                                <LogProducts
+                                    index={index}
+                                    logs={logsProducts}
+                                    setLogs={setLogsProducts}
+                                    log={log}
+                                    key={index}
+                                    conferenceProducts={conferenceProducts}
+                                    setConferenceProducts={setConferenceProducts}
+                                    BoxAviso={BoxAviso}
+                                />
+                            ))}
                     </tbody>
                 </table>
             </ScrollArea>
