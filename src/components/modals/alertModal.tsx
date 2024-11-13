@@ -13,10 +13,17 @@ interface AlertModalProps {
     title: string;
     description: string;
     show: boolean;
-    setShow: React.Dispatch<React.SetStateAction<boolean>>;
+    setShow?: React.Dispatch<React.SetStateAction<boolean>>;
+    onClick?: () => void;
 }
 
-export default function AlertModal({ title, description, show, setShow }: AlertModalProps): JSX.Element {
+export interface AlertModalT extends JSX.Element {
+    type: unknown;
+    key: string | null;
+    props: AlertModalProps;
+}
+
+export default function AlertModal({ title, description, show, setShow, onClick }: AlertModalProps): JSX.Element {
     return (
         <AlertDialog open={show}>
             <AlertDialogContent>
@@ -25,7 +32,11 @@ export default function AlertModal({ title, description, show, setShow }: AlertM
                     <AlertDialogDescription>{description}</AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                    <AlertDialogCancel onClick={() => setShow(!show)}>Cancel</AlertDialogCancel>
+                    {setShow ? (
+                        <AlertDialogCancel onClick={() => setShow(!show)}>Cancel</AlertDialogCancel>
+                    ) : (
+                        <AlertDialogCancel onClick={onClick}>Cancel</AlertDialogCancel>
+                    )}
                     {/* <AlertDialogAction>Continue</AlertDialogAction> */}
                 </AlertDialogFooter>
             </AlertDialogContent>
