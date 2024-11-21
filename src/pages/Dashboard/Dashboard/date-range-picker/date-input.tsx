@@ -186,15 +186,11 @@ export default function DateInput({ id, value, onChange }: { id: string } & Date
                 id={"day" + id}
                 ref={dayRef}
                 max={31}
-                maxLength={2}
+                maxLength={3}
                 value={formatNumber(date.day)}
                 onChange={handleInputChange("day")}
                 onKeyDown={handleKeyDown("day")}
-                onFocus={(e) => {
-                    if (window.innerWidth > 1024) {
-                        e.target.select();
-                    }
-                }}
+                onFocus={(e) => e.target.select()}
                 onBlur={handleBlur("day")}
                 className="p-0 outline-none w-7 border-none text-center"
                 placeholder="DD"
@@ -205,15 +201,11 @@ export default function DateInput({ id, value, onChange }: { id: string } & Date
                 id={"month" + id}
                 ref={monthRef}
                 max={12}
-                maxLength={2}
+                maxLength={3}
                 value={formatNumber(date.month)}
                 onChange={handleInputChange("month")}
                 onKeyDown={handleKeyDown("month")}
-                onFocus={(e) => {
-                    if (window.innerWidth > 1024) {
-                        e.target.select();
-                    }
-                }}
+                onFocus={(e) => e.target.select()}
                 onBlur={handleBlur("month")}
                 className="p-0 outline-none w-6 border-none text-center"
                 placeholder="MM"
@@ -225,14 +217,10 @@ export default function DateInput({ id, value, onChange }: { id: string } & Date
                 ref={yearRef}
                 max={9999}
                 maxLength={4}
-                value={formatNumber(date.year)}
+                value={date.year}
                 onChange={handleInputChange("year")}
                 onKeyDown={handleKeyDown("year")}
-                onFocus={(e) => {
-                    if (window.innerWidth > 1024) {
-                        e.target.select();
-                    }
-                }}
+                onFocus={(e) => e.target.select()}
                 onBlur={handleBlur("year")}
                 className="p-0 outline-none w-12 border-none text-center"
                 placeholder="AAAA"
