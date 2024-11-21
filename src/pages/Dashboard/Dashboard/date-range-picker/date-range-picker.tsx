@@ -68,11 +68,13 @@ export function DateRangePicker({
         const range = getPresetRange(preset);
         setRange(range);
         if (rangeCompare) {
-            const rangeCompare = {
-                from: new Date(range.from.getFullYear() - 1, range.from.getMonth(), range.from.getDate()),
-                to: range.to ? new Date(range.to.getFullYear() - 1, range.to.getMonth(), range.to.getDate()) : undefined,
-            };
-            setRangeCompare(rangeCompare);
+            const newRangeCompare = range.to
+                ? {
+                      from: new Date(range.from.getFullYear() - 1, range.from.getMonth(), range.from.getDate()),
+                      to: new Date(range.to.getFullYear() - 1, range.to.getMonth(), range.to.getDate()),
+                  }
+                : undefined;
+            setRangeCompare(newRangeCompare);
         }
     }
 
