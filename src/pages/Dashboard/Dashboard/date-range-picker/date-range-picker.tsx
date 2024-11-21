@@ -49,11 +49,11 @@ export function DateRangePicker({
 
     const [selectedPreset, setSelectedPreset] = useState<string | undefined>(undefined);
 
-    const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== "undefined" ? window.innerWidth < 960 : false);
+    const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== "undefined" ? window.innerWidth < 1025 : false);
 
     useEffect(() => {
         const handleResize = (): void => {
-            setIsSmallScreen(window.innerWidth < 960);
+            setIsSmallScreen(window.innerWidth < 1025);
         };
 
         window.addEventListener("resize", handleResize);
