@@ -67,7 +67,7 @@ export function FancyMultiSelect({ situationsSales, setSituationsSales }: FancyM
                 <div className="flex gap-1 flex-wrap">
                     {selected.map((situation) => {
                         return (
-                            <Badge key={situation.id} variant="secondary">
+                            <Badge key={situation.id} variant="secondary" onClick={() => handleUnselect(situation)}>
                                 {situation.nome}
                                 <button
                                     className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
@@ -80,7 +80,6 @@ export function FancyMultiSelect({ situationsSales, setSituationsSales }: FancyM
                                         e.preventDefault();
                                         e.stopPropagation();
                                     }}
-                                    onClick={() => handleUnselect(situation)}
                                 >
                                     <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
                                 </button>
