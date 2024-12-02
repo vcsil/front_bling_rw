@@ -64,7 +64,7 @@ export function FancyMultiSelect({ situationsSales, setSituationsSales }: FancyM
     return (
         <Command onKeyDown={handleKeyDown} className="h-fit overflow-visible bg-transparent">
             <div className="group border-input px-3 py-2 text-sm ring-offset-background rounded-md focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
-                <div className="flex gap-1 flex-wrap">
+                <div className="flex gap-1 flex-wrap cursor-pointer">
                     {selected.map((situation) => {
                         return (
                             <Badge key={situation.id} variant="secondary" onClick={() => handleUnselect(situation)}>
