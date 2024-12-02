@@ -100,7 +100,7 @@ export function FancyMultiSelect({ situationsSales, setSituationsSales }: FancyM
             </div>
             <div className="relative mt-0">
                 {open && selectables.length > 0 ? (
-                    <div className="absolute w-full z-10 top-0 rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
+                    <div className="absolute w-full z-10 top-0 rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in max-h-[20rem] overflow-y-scroll">
                         <CommandGroup className="h-full overflow-auto">
                             {selectables.map((situation) => {
                                 return (
