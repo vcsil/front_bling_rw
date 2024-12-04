@@ -26,7 +26,7 @@ export function CompareBalanceTable() {
             <TableCaption>Uma lista com os saldos dos últimos balanços.</TableCaption>
             <TableHeader>
                 <TableRow>
-                    <TableHead className="w-[100px]">ID</TableHead>
+                    <TableHead className="w-24">ID</TableHead>
                     <TableHead>Depósito</TableHead>
                     <TableHead className="text-right">Data</TableHead>
                 </TableRow>
@@ -35,13 +35,13 @@ export function CompareBalanceTable() {
                 {balancesDayDepositsError || balancesDayDepositsLoading ? (
                     <TableRow className="cursor-pointer">
                         <TableCell className="font-medium">
-                            <Skeleton className="w-1/3 h-[10px] m-2" />
+                            <Skeleton className="w-1/3 h-2.5 m-2" />
                         </TableCell>
                         <TableCell>
-                            <Skeleton className="w-1/3 h-[10px] m-2" />
+                            <Skeleton className="w-1/3 h-2.5 m-2" />
                         </TableCell>
                         <TableCell className="text-right">
-                            <Skeleton className="w-1/3 h-[10px] m-2" />
+                            <Skeleton className="w-1/3 h-2.5 m-2" />
                         </TableCell>
                     </TableRow>
                 ) : (

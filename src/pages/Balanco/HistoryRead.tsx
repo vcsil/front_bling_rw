@@ -26,7 +26,7 @@ export default function HistoryRead({
     return (
         <fieldset className="rounded-lg border bg-card p-4">
             <legend className="-ml-1 px-1 text-sm font-medium">Log de leituras</legend>
-            <ScrollArea className="h-36 min-[1360px]:h-[103px] min-[1400px]:h-96">
+            <ScrollArea className="h-36 xl:h-28 2xl:h-96">
                 <table className="min-w-full">
                     <tbody className="divide-y">
                         {logsProducts

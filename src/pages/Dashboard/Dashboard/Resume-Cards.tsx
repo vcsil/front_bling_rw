@@ -52,7 +52,7 @@ export default function ResumeCards({
     const ticketGrowth: boolean = ticketProps.percent > 0;
 
     return (
-        <div className="grid gap-4 md:grid-cols-2 min-[1140px]:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             <Card className="flex">
                 <div className="flex justify-center items-center w-1/3">
                     {ordersGrowth ? <ThumbsUp color="#21A747" /> : <ThumbsDown color="#DF3447" />}

@@ -24,9 +24,9 @@ export default function CompareBalanceProducts() {
     return (
         <>
             <Titulo>Comparação de estoque</Titulo>
-            <div className="max-[430px]:flex max-[430px]:flex-wrap grid gap-4 md:grid-cols-2 min-[1140px]:grid-cols-4">
+            <div className="flex flex-wrap md:grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {divergentProductsError || divergentProductsLoading ? (
-                    <Card className="flex cursor-pointer max-[430px]:w-full">
+                    <Card className="sm:flex cursor-pointer w-full">
                         <div className="h-full w-full pt-4 pb-3 px-3 space-y-2">
                             <Skeleton className="w-full h-52 flex justify-center items-center rounded-sm" />
                             <CardContent className="p-0">
@@ -42,7 +42,7 @@ export default function CompareBalanceProducts() {
                     </Card>
                 ) : (
                     divergentProducts.map((product, index) => (
-                        <Card className="flex cursor-pointer max-[430px]:w-full" key={index}>
+                        <Card className="sm:flex cursor-pointer w-full" key={index}>
                             <div className="h-full w-full pt-4 pb-3 px-3 space-y-2">
                                 <div className="w-full h-52 flex justify-center items-center rounded-sm">
                                     <img src={product.dir_image || "/no-image.svg"} alt={product.nome} className="h-full " />
@@ -76,7 +76,6 @@ export default function CompareBalanceProducts() {
 }
 
 const Titulo = styled.h1`
-    width: 500px;
     font-weight: 700;
     font-size: 40px;
     margin-bottom: 20px;

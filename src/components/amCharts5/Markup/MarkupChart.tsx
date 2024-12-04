@@ -193,7 +193,7 @@ function MarkupChart({ data, themeColors }: MarkupChartProps): React.ReactNode {
         };
     }, [data, themeColors]);
 
-    return <div id="chartdiv" style={{ width: "100%", height: "300px" }} />;
+    return <div id="chartdiv" style={{ width: "100%", height: "18rem" }} />;
 }
 
 export default MarkupChart;

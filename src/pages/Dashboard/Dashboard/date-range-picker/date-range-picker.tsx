@@ -177,7 +177,7 @@ export function DateRangePicker({
             <PopoverTrigger asChild>
                 <Button size={"lg"} variant="ghost" className="px-0 w-full h-full items-center justify-between">
                     <PlaceholderButton locale={locale} range={range} rangeCompare={rangeCompare} />
-                    <div className="opacity-60 -mr-2 scale-125 hidden min-[330px]:flex">
+                    <div className="opacity-60 -mr-2 scale-125 hidden sm:flex">
                         {isOpen ? <ChevronUpIcon width={24} /> : <ChevronDownIcon width={24} />}
                     </div>
                 </Button>
@@ -214,7 +214,7 @@ export function DateRangePicker({
                                         setPreset(value);
                                     }}
                                 >
-                                    <SelectTrigger className="w-[180px] mx-auto mb-2">
+                                    <SelectTrigger className="w-44 mx-auto mb-2">
                                         <SelectValue placeholder="Select..." />
                                     </SelectTrigger>
                                     <SelectContent>

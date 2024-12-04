@@ -38,7 +38,7 @@ export default function Markup({ rangeDateMain: rangeDate, situationsSales }: Ma
 
     return (
         <>
-            <Card className="col-span-6 min-[1360px]:col-span-3">
+            <Card className="col-span-6 xl:col-span-3">
                 <CardHeader className="flex-row items-center">
                     <TrendingUp />
                     <CardTitle className="text-xl pl-2 mt-0">Markup - (Custo direto - Faturamento Líquido)</CardTitle>

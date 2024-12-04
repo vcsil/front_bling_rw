@@ -56,7 +56,7 @@ export function FancyMultiSelect({ situationsSales, setSituationsSales }: FancyM
     }, []);
 
     if (situationsLoading) {
-        return <Skeleton className="w-2/3 h-[10px] m-2" />;
+        return <Skeleton className="w-2/3 h-2.5 m-2" />;
     }
 
     const selectables = SITUATIONS.filter((situation) => !selected.includes(situation));

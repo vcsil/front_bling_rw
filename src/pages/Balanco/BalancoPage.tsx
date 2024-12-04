@@ -159,8 +159,8 @@ export default function BalancoPage() {
                         <></>
                     )}
                 </div>
-                <div className="grid gap-4 grid-cols-2 min-[1360px]:grid-cols-11">
-                    <div className="col-span-2 min-[1360px]:col-span-5 space-y-4">
+                <div className="grid gap-4 grid-cols-2 xl:grid-cols-11">
+                    <div className="col-span-2 xl:col-span-5 space-y-4">
                         <InputsGrid
                             idDeposit={idDeposit}
                             setIdDeposit={setIdDeposit}
@@ -192,7 +192,7 @@ export default function BalancoPage() {
                             BoxAviso={BoxAviso}
                         />
                     </div>
-                    <div className="col-span-2 min-[1360px]:col-span-6 space-y-1.5">
+                    <div className="col-span-2 xl:col-span-6 space-y-1.5">
                         <ProductPhoto
                             imageUrl={product?.produtos_midias?.diretorio_local}
                             productName={product?.nome}

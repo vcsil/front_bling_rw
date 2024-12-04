@@ -44,7 +44,7 @@ export default function Dashboard() {
                     setSituationsSales={setSituationsSales}
                 />
                 <ResumeCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} situationsSales={situationsSales} />
-                <div className="grid gap-4 grid-cols-6 min-[1360px]:grid-cols-5">
+                <div className="grid gap-4 grid-cols-6 xl:grid-cols-5">
                     <Markup rangeDateMain={rangeDateMain} situationsSales={situationsSales} />
                     <BlingStatus dateRange={rangeDateMain} />
                     <FinancialCards rangeDateMain={rangeDateMain} rangeDateCompare={rangeDateCompare} />

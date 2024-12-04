@@ -47,7 +47,7 @@ export default function BlingStatus({ dateRange }: BlingStatusProps): JSX.Elemen
 
     return (
         <>
-            <Card className="col-span-6 min-[1140px]:col-span-3 min-[1360px]:col-span-2">
+            <Card className="col-span-6 lg:col-span-3 xl:col-span-2">
                 <CardHeader className="flex-row items-center">
                     <FileBarChart />
                     <CardTitle className="text-xl pl-2 mt-0">Bling Status</CardTitle>
@@ -55,7 +55,7 @@ export default function BlingStatus({ dateRange }: BlingStatusProps): JSX.Elemen
                 <Separator />
 
                 <CardContent className="pt-2">
-                    <ScrollArea className="h-[300px] min-[1140px]:h-[450px] min-[1360px]:h-[300px]">
+                    <ScrollArea className="h-72 lg:h-96 xl:h-80">
                         {orderStatus.map((status, index) => (
                             <OrderSalesStatus
                                 status={status.nome}

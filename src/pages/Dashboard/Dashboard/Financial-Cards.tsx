@@ -54,7 +54,7 @@ function CardComponent({ card, isPercent, setIsPercent, isLast, isSmallScreen }:
     );
 }
 
-function CardComponentCarousel({ card, isPercent, setIsPercent }: CardComponentCarouselProps): JSX.Element {
+function CardComponentCarouselSmall({ card, isPercent, setIsPercent }: CardComponentCarouselProps): JSX.Element {
     const isPositive = card.percent > 0;
 
     function financialCardClick() {
@@ -62,8 +62,8 @@ function CardComponentCarousel({ card, isPercent, setIsPercent }: CardComponentC
     }
 
     return (
-        <CarouselItem className="min-[1140px]:w-20">
-            <Card className="flex justify-center items-center py-5 border-0 min-[1140px]:border">
+        <CarouselItem>
+            <CarouselContent className="flex justify-center items-center py-5">
                 <div className="flex flex-col justify-center items-center" title={card.details}>
                     <button className="flex mb-1.5 cursor-pointer" onClick={financialCardClick} onKeyDown={financialCardClick}>
                         {isPositive ? (
@@ -95,13 +95,13 @@ function CardComponentCarousel({ card, isPercent, setIsPercent }: CardComponentC
                     </h3>
                     <h3 className="text-lg">{card.name}</h3>
                 </div>
-            </Card>
+            </CarouselContent>
         </CarouselItem>
     );
 }
 
 export default function FinancialCards({ rangeDateMain, rangeDateCompare }: FinancialCardsProps): JSX.Element {
-    const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== "undefined" ? window.innerWidth < 1360 : false);
+    const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== "undefined" ? window.innerWidth < 1280 : false);
     const [isPercent, setIsPercent] = useState<boolean>(true);
 
     const initialValuesCards = {
@@ -121,7 +121,7 @@ export default function FinancialCards({ rangeDateMain, rangeDateCompare }: Fina
 
     useEffect(() => {
         const handleResize = (): void => {
-            setIsSmallScreen(window.innerWidth < 1360);
+            setIsSmallScreen(window.innerWidth < 1280);
         };
 
         window.addEventListener("resize", handleResize);
@@ -148,13 +148,13 @@ export default function FinancialCards({ rangeDateMain, rangeDateCompare }: Fina
     }, [rangeDateMain, rangeDateCompare]);
 
     return (
-        <div className="col-span-6 min-[1140px]:col-span-3 min-[1360px]:col-span-5 block min-[1360px]:flex  w-full rounded-lg shadow-sm border-0 min-[1360px]:border">
+        <div className="col-span-6 lg:col-span-3 xl:col-span-5 block xl:flex  w-full rounded-lg shadow-sm border-0 xl:border">
             {isSmallScreen ? (
                 <div className="flex justify-center items-center h-full w-full">
-                    <Carousel>
+                    <Carousel className="w-full max-w-56 sm:max-w-xs lg:max-w-72 border rounded-sm">
                         <CarouselContent>
                             {cards.map((card, index) => (
-                                <CardComponentCarousel card={card} isPercent={isPercent} setIsPercent={setIsPercent} key={index} />
+                                <CardComponentCarouselSmall card={card} isPercent={isPercent} setIsPercent={setIsPercent} key={index} />
                             ))}
                         </CarouselContent>
                         <CarouselPrevious />

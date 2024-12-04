@@ -81,8 +81,8 @@ export default function InputsGrid({
     }
 
     return (
-        <div className="grid gap-4 grid-cols-2 min-[1360px]:grid-cols-5">
-            <div className="col-span-2 min-[1360px]:col-span-3 space-y-1.5">
+        <div className="grid gap-4 grid-cols-2 xl:grid-cols-5">
+            <div className="col-span-2 xl:col-span-3 space-y-1.5">
                 <Label htmlFor="deposit">Depósito</Label>
                 {depositsLoading || depositsError ? (
                     <Card className="h-10 flex items-center" id="deposit">
@@ -103,15 +103,15 @@ export default function InputsGrid({
                     </Select>
                 )}
             </div>
-            <div className="col-span-2 lg:col-span-1 min-[1360px]:col-span-2 space-y-1.5">
+            <div className="col-span-2 lg:col-span-1 xl:col-span-2 space-y-1.5">
                 <Label htmlFor="read">Total lidos</Label>
                 <Input id="read" disabled={true} value={totalRead} />
             </div>
-            <div className="col-span-2 lg:col-span-1 min-[1360px]:col-span-2 space-y-1.5">
+            <div className="col-span-2 lg:col-span-1 xl:col-span-2 space-y-1.5">
                 <Label htmlFor="unit">Quantidade a ser lida</Label>
                 <Input type="number" id="unit" value={unit} onChange={alterUnit} />
             </div>
-            <div className="col-span-2 min-[1360px]:col-span-3 space-y-1.5">
+            <div className="col-span-2 xl:col-span-3 space-y-1.5">
                 <Label htmlFor="code">Código do produto</Label>
                 <Input id="code" onKeyDown={alterCodeProduct} />
             </div>
