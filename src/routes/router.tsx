@@ -12,8 +12,8 @@ function AppRoutes() {
             <Routes>
                 <Route path="/dashboard" element={<DashboardPage />} />
                 <Route path="/balanco" element={<BalancoPage />} />
-                <Route path="/balanco/compare" element={<CompareBalancePage />} />
-                <Route path="/balanco/compare/:idDeposit/:dateBalance" element={<CompareBalanceProducts />} />
+                <Route path="/balanco/comparacoes" element={<CompareBalancePage />} />
+                <Route path="/balanco/comparacoes/:idDeposit/:dateBalance" element={<CompareBalanceProducts />} />
 
                 <Route path="*" element={<h1>404</h1>} />
             </Routes>

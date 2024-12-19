@@ -87,7 +87,7 @@ export interface AllBalancePerDayDepositT {
     data: string;
 }
 
-export interface DivergentroductsT {
+export interface DivergentProductsT {
     id_produto: bigint;
     codigo: string;
     nome: string;

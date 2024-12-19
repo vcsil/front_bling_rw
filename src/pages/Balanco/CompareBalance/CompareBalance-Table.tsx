@@ -17,7 +17,7 @@ export function CompareBalanceTable() {
 
     function clickBalance(idDeposit: number, date: string) {
         const dateFormat = date.split("T")[0];
-        navigate(`/balanco/compare/${idDeposit}/${dateFormat}`);
+        navigate(`/balanco/comparacoes/${idDeposit}/${dateFormat}`);
         return true;
     }
 

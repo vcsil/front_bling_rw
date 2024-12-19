@@ -4,11 +4,13 @@ import styled from "styled-components";
 import useGetDivergentProducts from "@/hooks/api/Balance/useGetDivergentProducts";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useParams } from "react-router-dom";
-import { DivergentroductsT } from "../types";
+import { useNavigate, useParams } from "react-router-dom";
+import { DivergentProductsT } from "@/pages/Balanco/types";
 
 export default function CompareBalanceProducts() {
-    const [divergentProducts, setDivergentProducts] = useState<DivergentroductsT[]>([]);
+    const navigate = useNavigate();
+
+    const [divergentProducts, setDivergentProducts] = useState<DivergentProductsT[]>([]);
     const { idDeposit, dateBalance } = useParams();
 
     const { getDivergentProducts, divergentProductsError, divergentProductsLoading } = useGetDivergentProducts();
@@ -18,6 +20,8 @@ export default function CompareBalanceProducts() {
             getDivergentProducts(Number(idDeposit), new Date(dateBalance))
                 .then((divergent) => setDivergentProducts(divergent))
                 .catch((e) => console.log(e));
+        } else {
+            navigate("/balanco/comparacoes");
         }
     }, [idDeposit, dateBalance]);
 
