@@ -49,7 +49,12 @@ export default function CompareBalanceProducts() {
                         <Card className="sm:flex cursor-pointer w-full" key={index}>
                             <div className="h-full w-full pt-4 pb-3 px-3 space-y-2">
                                 <div className="w-full h-52 flex justify-center items-center rounded-sm">
-                                    <img src={product.dir_image || "/no-image.svg"} alt={product.nome} className="h-full " />
+                                    <img
+                                        src={product.dir_image || "/no-image.svg"}
+                                        alt={product.nome}
+                                        className="relative h-full transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+                                        sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
+                                    />
                                 </div>
                                 <CardContent className="p-0">
                                     <div className="text-2xl font-bold mb-2 overflow-hidden text-ellipsis text-nowrap" title={product.nome}>
