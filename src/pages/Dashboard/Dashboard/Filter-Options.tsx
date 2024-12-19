@@ -36,7 +36,7 @@ export default function FilterOptions({
                                 onUpdate={(values) => setRangeDateMain(values.range, "main")}
                                 initialDateFrom={rangeDateMain.from}
                                 initialDateTo={rangeDateMain.to}
-                                align="start"
+                                align="end"
                                 locale="pt-BR"
                                 showCompare={false}
                             />
@@ -57,7 +57,7 @@ export default function FilterOptions({
                                 onUpdate={(values) => setRangeDateMain(values.range, "compare")}
                                 initialDateFrom={rangeDateCompare.from}
                                 initialDateTo={rangeDateCompare.to}
-                                align="start"
+                                align="end"
                                 locale="pt-BR"
                                 showCompare={false}
                             />
