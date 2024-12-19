@@ -70,6 +70,9 @@
     --cor-verde: #21a747;
     --cor-vermelho: #df3447;
     --cor-amarelo: #fcc201;
+    --cor-rw1: #ffcf4e;
+    --cor-rw2: #d88225;
+    --cor-rw3: #b16b18;
 }
 
 @layer base {
