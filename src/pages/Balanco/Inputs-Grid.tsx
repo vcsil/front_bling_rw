@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -24,13 +24,28 @@ export default function InputsGrid({
     BoxAviso,
     product,
     totalRead,
+    BoxAvisoManual,
 }: InputsGridProps): JSX.Element {
+    const [notification, setNotification] = useState<boolean>(true);
+
     const { deposits, depositsLoading, depositsError } = useGetDeposits();
     useEffect(() => {
         if (depositsError && depositsError instanceof Error) {
             errorHandling(depositsError);
         }
-    }, [depositsError]);
+
+        console.log("🚀 ~ notification:", notification);
+        if (notification && totalRead && totalRead % 50 === 0) {
+            BoxAvisoManual(
+                "Conferêcia manual",
+                "Conte as peças bipadas e verifique se as quantidades batem.",
+                notification,
+                setNotification,
+            );
+        } else if (totalRead % 50 !== 0) {
+            setNotification(true);
+        }
+    }, [depositsError, totalRead, notification]);
 
     function alterDeposit(nameDeposit: string) {
         if (deposits) {

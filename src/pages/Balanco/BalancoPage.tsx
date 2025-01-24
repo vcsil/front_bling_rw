@@ -88,6 +88,30 @@ export default function BalancoPage() {
         ]);
     }
 
+    function BoxAvisoManual(
+        title: string,
+        message: string,
+        showNotification: boolean,
+        setShowNotification: React.Dispatch<React.SetStateAction<boolean>>,
+    ) {
+        if (showError.find((modalAlert: AlertModalT) => modalAlert.props.description === message)) return;
+
+        const uniqueKey = new Date().getTime();
+        setShowError([
+            ...showError,
+            <AlertModal
+                key={uniqueKey}
+                title={title}
+                description={message}
+                show={showNotification}
+                onClick={() => {
+                    setShowError(showError.filter((i) => i.key !== String(uniqueKey)));
+                    setShowNotification(!showNotification);
+                }}
+            />,
+        ]);
+    }
+
     function addLogsProducts(id: number, id_bling: number, quantityRead: number, code: string, name: string) {
         const logLine = { id, id_bling, quantityRead, code, name };
         setLogsProducts([...logsProducts, logLine]);
@@ -176,6 +200,7 @@ export default function BalancoPage() {
                             addLogsProducts={addLogsProducts}
                             product={product}
                             totalRead={totalRead}
+                            BoxAvisoManual={BoxAvisoManual}
                         />
                         <ProductRead
                             codeProduct={codeProduct}
