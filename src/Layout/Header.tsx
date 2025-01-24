@@ -17,7 +17,7 @@ export default function Header() {
             <nav className="flex h-16 items-center justify-between px-4">
                 <Link to={"#"} className="hidden items-center justify-between gap-2 md:flex">
                     <Boxes className="h-6 w-6" />
-                    <h1 className="text-lg font-semibold">RW DashBoard</h1>
+                    <h1 className="text-lg font-semibold">Renata Wist Acessórios</h1>
                 </Link>
                 <div className={cn("block md:!hidden")}>
                     <MobileSidebar />
