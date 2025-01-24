@@ -61,12 +61,16 @@ export default function ProductsList({ idCategory, orderKey, textSearch, setText
     const listCount = [1, 2, 3, 4, 5, 6];
 
     function searchProducts(text: string) {
-        if (idDeposit) {
-            if (textSearch.length > 2) {
-                getProductsSearch({ idDeposit, idCategory, page: currentPage, take, orderKey, text })
-                    .then((allProducts) => setProductsSearch(allProducts))
-                    .catch((e) => console.log(e));
-            }
+        if (idDeposit && textSearch.length > 2) {
+            getProductsSearch({ idDeposit, idCategory, page: currentPage, take, orderKey, text })
+                .then((allProducts) => setProductsSearch(allProducts))
+                .catch((e) => console.log(e));
+
+            getProductsTotalQuantity(idCategory, text)
+                .then((productsTotal) => {
+                    setTotalPages(Math.ceil(Number(productsTotal.total) / take));
+                })
+                .catch((e) => console.log(e));
         }
     }
 
@@ -112,7 +116,7 @@ export default function ProductsList({ idCategory, orderKey, textSearch, setText
                             }
                         }}
                         showPreviousNext={true}
-                        hidden={textSearch.length > 2}
+                        hidden={false}
                     />
                 </>
             )}
