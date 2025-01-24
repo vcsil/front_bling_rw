@@ -16,7 +16,7 @@ import useGetSearchProducts from "@/hooks/api/Products/useGetSearchProducts";
 function ProductItem({ product }: { product: ProductsListT }) {
     return (
         <Grid.Item className="animate-fadeIn">
-            <Link className="relative inline-block h-full w-full" to={`/produto/${product.id_produto}`}>
+            <Link className="relative inline-block h-full w-full" to={"#"}>
                 <GridTileImage
                     alt={product.nome}
                     label={{
@@ -71,7 +71,7 @@ export default function ProductsList({ idCategory, orderKey, textSearch, setText
     }
 
     useEffect(() => {
-        if (idDeposit) {
+        if (idDeposit && textSearch.length <= 2) {
             getProductsList({ idDeposit, idCategory, page: currentPage, take, orderKey })
                 .then((allProducts) => setProducts(allProducts))
                 .catch((e) => console.log(e));
@@ -81,6 +81,8 @@ export default function ProductsList({ idCategory, orderKey, textSearch, setText
                     setTotalPages(Math.ceil(Number(productsTotal.total) / take));
                 })
                 .catch((e) => console.log(e));
+        } else {
+            searchProducts(textSearch);
         }
     }, [idCategory, idDeposit, currentPage, orderKey]);
 

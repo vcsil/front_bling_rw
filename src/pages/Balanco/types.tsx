@@ -13,6 +13,12 @@ export interface InputsGridProps {
     addLogsProducts: (_id: number, _id_bling: number, _quantityRead: number, _code: string, _name: string) => void;
     product: BalanceProductT | undefined;
     totalRead: number;
+    BoxAvisoManual: (
+        _title: string,
+        _message: string,
+        _showNotification: boolean,
+        _setShowNotification: React.Dispatch<React.SetStateAction<boolean>>,
+    ) => void;
 }
 
 export interface IdDepositLocalStorageT {
