@@ -12,7 +12,7 @@ interface ProductsSearchProps {
 
 export default function ProductsSearch({ textSearch, setTextSearch, searchProducts }: ProductsSearchProps) {
     useEffect(() => {
-        searchProducts(textSearch);
+        if (textSearch.length > 2) searchProducts(textSearch);
     }, [textSearch]);
 
     return (
