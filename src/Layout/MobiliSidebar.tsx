@@ -27,11 +27,11 @@ export const MobileSidebar = () => {
                         <h1 className="text-lg font-semibold">Renata Wist Acessórios</h1>
                     </div>
                 </SheetTrigger>
-                <SheetContent side="left" className="w-72">
+                {/* <SheetContent side="left" className="w-72">
                     <div className="px-1 py-6 pt-16">
                         <SideNav items={NavItems} setOpen={setOpen} />
                     </div>
-                </SheetContent>
+                </SheetContent> */}
             </Sheet>
         </>
     );
