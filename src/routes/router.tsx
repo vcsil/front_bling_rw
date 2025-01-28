@@ -6,6 +6,7 @@ import { Layout } from "@/Layout";
 // import CompareBalancePage from "@/pages/Balanco/CompareBalance/CompareBalance";
 // import CompareBalanceProducts from "@/pages/Balanco/CompareBalance/CompareBalance-Products";
 import ProductsListPage from "@/pages/Products/ProductsListPage";
+import CatalogListPage from "@/pages/Catalog/CatalogListPage";
 
 function AppRoutes() {
     return (
@@ -19,6 +20,8 @@ function AppRoutes() {
 
                 <Route path="/produtos" element={<ProductsListPage />} />
                 <Route path="/produtos/categoria/:idCategory" element={<ProductsListPage />} />
+
+                <Route path="/catalog" element={<CatalogListPage />} />
 
                 <Route path="*" element={<h1>404</h1>} />
             </Routes>
