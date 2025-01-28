@@ -64,13 +64,13 @@ const Label = ({ title, amount, currencyCode, position = "bottom", quantity, pro
             <div>
                 <div className="w-14 flex-row space-y-2 mb-2">
                     {productChildren.length > 0 ? (
-                        productChildren.length <= 3 ? (
-                            productChildren.map((product, idx) => (
-                                <ProductQuantity key={idx} valueQuantity={Number(product.saldo)} productName={product.nome} />
-                            ))
-                        ) : (
-                            <ProductQuantity valueQuantity={"..."} />
-                        )
+                        productChildren.map((product, idx) => {
+                            if (idx < 4) {
+                                return <ProductQuantity key={idx} valueQuantity={Number(product.saldo)} productName={product.nome} />;
+                            } else if (idx === 4) {
+                                return <ProductQuantity key={idx} valueQuantity={"..."} />;
+                            }
+                        })
                     ) : (
                         <ProductQuantity valueQuantity={quantity} />
                     )}
